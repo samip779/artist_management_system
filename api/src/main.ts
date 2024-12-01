@@ -3,10 +3,16 @@ import { AppModule } from './app.module';
 import { EnvironmentConfigService } from './environment-config/environment-config.service';
 import { Environment } from './environment-config/environment-config.validation';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+
+  app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
+
+  app.use(helmet());
 
   const configService = app.get(EnvironmentConfigService);
 

@@ -22,11 +22,12 @@ exports.up = (pgm) => {
                 id SERIAL PRIMARY KEY,
                 first_name VARCHAR(255) NOT NULL,
                 last_name VARCHAR(255) NOT NULL,
-                email varchar(255) NOT NULL,
+                email varchar(255) NOT NULL UNIQUE,
                 password varchar(500) NOT NULL,
                 phone varchar(20),
                 dob TIMESTAMP,
                 gender gender,
+                role role NOT NULL,
                 address VARCHAR(255),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
